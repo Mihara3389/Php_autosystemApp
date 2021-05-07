@@ -16,15 +16,8 @@ if ((isset($_POST["username"])) and (isset($_POST['password'])))
 //現在時刻を取得
 date_default_timezone_set('Asia/Tokyo');
 $now = date("Y/m/d G:i:s");
-//データベース接続情報
-$dsn = "mysql:host=localhost; dbname=phpApp; charset=utf8";
-$dbuser = "hoge";
-$dbpass = "himitu";
-try {
-    $dbh = new PDO($dsn, $dbuser, $dbpass);
-} catch (PDOException $e) {
-    $msg = $e->getMessage();
-}
+//データベース接続処理
+require('dbconnect.php');
 
 //フォームに入力されたusernameがすでに登録されていないかチェック
 $sql = "SELECT username FROM user WHERE username = :username";
@@ -35,7 +28,7 @@ $stmt->execute();
 $member = $stmt->fetchColumn();
 $key = strcmp($member, $username);
 if ($key === 0){
-    $msg = '同じユーザー名が存在します。';
+    $msg = '*入力された名前はすでに登録済です。';
     $link = '<a href="signup.php">戻る</a>';
 } else {
     //登録されていなければinsert 
@@ -45,8 +38,7 @@ if ($key === 0){
     $stmt->bindValue(':password', $password);
     $stmt->bindValue(':created_at', $now);
     $stmt->execute();
-    $msg = '会員登録が完了しました';
-    $link = '<a href="login_form.php">ログインページ</a>';
+    header("location: login_form.php");
 }
 ?>
 
