@@ -27,13 +27,14 @@ try {
 }
 
 //フォームに入力されたusernameがすでに登録されていないかチェック
-$sql = "SELECT * FROM user WHERE username = :username";
+$sql = "SELECT username FROM user WHERE username = :username";
 $stmt = $dbh->prepare($sql);
 $stmt->bindValue(':username', $username);
 $stmt->execute();
 //usernameに一致するものを1行取得
-$member = $stmt->fetch();
-if ($member === true){
+$member = $stmt->fetchColumn();
+$key = strcmp($member, $username);
+if ($key === 0){
     $msg = '同じユーザー名が存在します。';
     $link = '<a href="signup.php">戻る</a>';
 } else {
