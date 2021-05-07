@@ -5,7 +5,6 @@ $err = [];
 //変数初期化
 $username ="";
 $password ="";
-$session_flg = 0;
 //フォームからの値をそれぞれ変数に代入とチェック
 if (isset($_POST["Signup"])) {
     //バリデーションチェック
