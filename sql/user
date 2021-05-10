@@ -1,0 +1,19 @@
+create table  phpApp.user(
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(63) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  created_at timestamp default null,
+  updated_at timestamp default null,
+  deleteflag tinyint(1) DEFAULT 0 COMMENT "not deleted:0, delete:1",
+  deleted_at timestamp default null
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE DATABASE phpApp;
+
+
+CREATE USER 'hoge' IDENTIFIED BY 'himitu';
+
+GRANT ALL ON phpApp.* TO 'hoge'@'localhost';
+
+show grants for 'hoge'@'localhost'
