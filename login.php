@@ -38,10 +38,11 @@ if (isset($_POST["Login"])) {
         }
         if (count($err) > 0) {
             $_SESSION = $err;
-            //signupへ遷移
+            //login_formへ遷移
             header('location: login_form.php');
             return;
         } else{
+             //topへ遷移
             header("location: index.php");
         }
     } 
