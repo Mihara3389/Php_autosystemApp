@@ -2,6 +2,8 @@
 session_start();
 // エラーメッセージの初期化
 $err = [];
+//変数初期化
+$members =[];
 //ログインセッションを確認
 if (isset($_SESSION['id']))
  {
@@ -27,7 +29,6 @@ if (isset($_SESSION['id']))
         //連想配列で取得
         while($member  = $stmt->fetch( PDO::FETCH_ASSOC )){
             $members[] = $member;
-            echo $member;
         }
         //履歴へ遷移
         $_SESSION['members'] = $members;
