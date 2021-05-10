@@ -30,8 +30,8 @@
             <td style="text-align: center;"><?php echo $name; ?></td>
             <td style="text-align: center;"><?php echo $member['point']; ?></td>
             <td style="text-align: center;"><?php echo $member['created_at']; ?></td>
-        </tbody>
         </tr>
+        </tbody>
 <?php
 }
 ?>
