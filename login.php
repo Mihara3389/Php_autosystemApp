@@ -1,32 +1,49 @@
 <?php
 session_start();
-$username = $_POST['username'];
-$dsn = "mysql:host=localhost; dbname=phpApp; charset=utf8";
-$dbuser = "hoge";
-$dbpass = "himitu";
-try {
-    $dbh = new PDO($dsn, $dbuser, $dbpass);
-} catch (PDOException $e) {
-    $msg = $e->getMessage();
-}
-
-$sql = "SELECT * FROM user WHERE username = :username";
-$stmt = $dbh->prepare($sql);
-$stmt->bindValue(':username', $username);
-$stmt->execute();
-$member = $stmt->fetch();
-//指定したハッシュがパスワードにマッチしているかチェック
-if (password_verify($_POST['password'], $member['password'])) {
-    //DBのユーザー情報をセッションに保存
-    $_SESSION['id'] = $member['id'];
-    $_SESSION['name'] = $member['username'];
-    $msg = 'ログインしました。';
-    $link = '<a href="index.php">ホーム</a>';
-} else {
-    $msg = 'ユーザー名もしくはパスワードが間違っています。';
-    $link = '<a href="AutoSystem/login_form.php">戻る</a>';
+// エラーメッセージの初期化
+$err = [];
+//変数初期化
+$username ="";
+$password ="";
+//フォームからの値をそれぞれ変数に代入とチェック
+if (isset($_POST["Login"])) {
+    //バリデーションチェック
+    if (empty($_POST["username"])) {  // 値が空のとき
+        $_SESSION['msg_user'] = "ユーザー名が未入力です。";
+        $err = $_SESSION;
+    }elseif (empty($_POST["password"])) {// 値が空のとき
+        $_SESSION['msg_pass'] = "パスワードが未入力です。";
+        $err = $_SESSION;
+    }elseif (!empty($_POST["username"]) && !empty($_POST["password"])) {
+        $username = $_POST['username'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        //データベース接続処理
+        require('dbconnect.php');
+        //フォームに入力されたusernameがすでに登録されているものかチェック
+        $sql = "SELECT * FROM user WHERE username = :username";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':username', $username);
+        $stmt->execute();
+        //usernameに一致するものを1行取得
+        $member = $stmt->fetch();
+        $key = strcmp($member['username'], $username);
+        //ユーザー名と指定したハッシュがパスワードにマッチしているかチェック
+        if (($key === 0) and (password_verify($_POST['password'], $member['password']))) {
+            //DBのユーザー情報をセッションに保存
+            $_SESSION['id'] = $member['id'];
+            $_SESSION['name'] = $member['username'];
+        }else{
+            $_SESSION['msg'] = "ユーザー名もしくはパスワードが間違っています。";
+            $err = $_SESSION;
+        }
+        if (count($err) > 0) {
+            $_SESSION = $err;
+            //signupへ遷移
+            header('location: login_form.php');
+            return;
+        } else{
+            header("location: index.php");
+        }
+    } 
 }
 ?>
-
-<h1><?php echo $msg; ?></h1>
-<?php echo $link; ?>

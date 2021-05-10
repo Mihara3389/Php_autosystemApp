@@ -2,7 +2,5 @@
 session_start();
 $_SESSION = array();//セッションの中身をすべて削除
 session_destroy();//セッションを破壊
+header("location: login_form.php");
 ?>
-
-<p>ログアウトしました。</p>
-<a href="login_form.php">ログインへ</a>
