@@ -27,9 +27,9 @@
         <?php foreach($members as $member){?>
         <tbody>
         <tr>
-            <td><?php echo $name; ?></td>
-            <td><?php echo $member['point']; ?></td>
-            <td><?php echo $member['created_at']; ?></td>
+            <td style="text-align: center;"><?php echo $name; ?></td>
+            <td style="text-align: center;"><?php echo $member['point']; ?></td>
+            <td style="text-align: center;"><?php echo $member['created_at']; ?></td>
         </tbody>
         </tr>
 <?php
