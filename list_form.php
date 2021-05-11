@@ -1,8 +1,6 @@
 <?php
     session_start();
 	$list = $_SESSION['list'];
-	$_SESSION = array();
-    session_destroy();
 ?>
 <link  href="css/list.css" rel="stylesheet">
 <link  href="css/style.css" rel="stylesheet">

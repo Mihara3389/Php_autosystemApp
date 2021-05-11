@@ -2,8 +2,6 @@
     session_start();
     $name = $_SESSION['name'];
     $members = $_SESSION['members'];
-    $_SESSION = array();
-    session_destroy();
 ?>
 <link  href="css/history.css" rel="stylesheet">
 <link  href="css/style.css" rel="stylesheet">
