@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $err = $_SESSION;
+    $err_list = $_SESSION;
     $_SESSION = array();
     session_destroy();
 ?>
@@ -18,16 +18,16 @@
 <div class ="box">
 <form id="form-name" action="register.php" method="post" novalidate>
     <h1>Registration</h1>
-    <?php if(!empty($err['msg'])): ?>
-        <p style="color:red;"><?php echo $err['msg']; ?></p>
+    <?php if(!empty($err_list['msg'])): ?>
+        <p style="color:red;"><?php echo $err_list['msg']; ?></p>
     <?php endif; ?>
     <input type="text"  name="username"  placeholder="Username" class="validate[required,maxSize[63]]">
-    <?php if(!empty($err['msg_username'])): ?>
-        <p><?php echo $err['msg_username']; ?></p>
+    <?php if(!empty($err_list['msg_username'])): ?>
+        <p><?php echo $err_list['msg_username']; ?></p>
     <?php endif; ?>
     <input type="password" name="password" placeholder="Password" class="validate[required,custom[password],maxSize[255]]">
-    <?php if(!empty($err['msg_password'])): ?>
-        <p><?php echo $err['msg_password']; ?></p>
+    <?php if(!empty($err_list['msg_password'])): ?>
+        <p><?php echo $err_list['msg_password']; ?></p>
     <?php endif; ?>
     <input type="submit" id="Signup" name="Signup" value="Signup">
     <a href="login_form.php">キャンセル</a>

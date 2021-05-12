@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $testlist = $_SESSION['testlist'];
+    $qa_list = $_SESSION['qa_list'];
 ?>
 <link  href="css/test_form.css" rel="stylesheet">
 <link  href="css/style.css" rel="stylesheet">
@@ -12,10 +12,10 @@
 	    <a href="logout.php">logout</a>
     </div>
     <table>
-        <?php foreach($testlist as $tl){?>
+        <?php foreach($qa_list as $qa){?>
         <tr>
-    	    <td><input type="text"  id="id" name="id[]"  value=<?php echo $tl['qid']; ?> readonly></td>
-		    <td><input type="text"  id="question" name="question[]"  value=<?php echo $tl['q']; ?>  readonly></td>
+    	    <td><input type="text"  id="id" name="id[]"  value=<?php echo $qa['qid']; ?> readonly></td>
+		    <td><input type="text"  id="question" name="question[]"  value=<?php echo $qa['q']; ?>  readonly></td>
 	    </tr>
         <tr>
             <td> 回答：</td>

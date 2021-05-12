@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $err = $_SESSION;
+    $err_list = $_SESSION;
     $_SESSION = array();
     session_destroy();
 ?>
@@ -17,8 +17,8 @@
 <div class="box">
 <form id="form-name" action="login.php" method="post">
     <h1>Login</h1>
-    <?php if(!empty($err['msg'])): ?>
-        <p style="color:red;"><?php echo $err['msg']; ?></p>
+    <?php if(!empty($err_list['msg'])): ?>
+        <p style="color:red;"><?php echo $err_list['msg']; ?></p>
     <?php endif; ?>
 　  <input type="text" name="username" placeholder="Username" class="validate[required]">
     <input type="password" name="password"  placeholder="Password" class="validate[required]">

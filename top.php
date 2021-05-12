@@ -1,11 +1,10 @@
 <?php
 session_start();
 // エラーメッセージの初期化
-$err = [];
+$err_list = [];
 //変数初期化
 $members =[];
-$qadata = [];
-$result = '';
+$qa_list = [];
 //ログインセッションを確認
 if (isset($_SESSION['id']))
  {
@@ -23,16 +22,16 @@ if (isset($_SESSION['id']))
         $sql = "SELECT DISTINCT questions.id as qid, questions.question as q FROM questions INNER JOIN correct_answers ON questions.id = correct_answers.question_id;";
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
-        while ($qa  = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $qadata[] = $qa;
+        while ($dbqa  = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $qa_list[] = $dbqa;
         }
-        $result = shuffle($qadata);
+        $result = shuffle($qa_list);
         //テスト画面へ遷移
         if ($result === false) {
             //新規qa登録画面へ遷移
             header("location: register_form.php");
         }else{
-            $_SESSION['testlist'] = $qadata;
+            $_SESSION['qa_list'] = $qa_list;
             header("location: test_form.php");
         }
     }else if(isset($_POST["history"]))
