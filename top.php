@@ -48,8 +48,8 @@ if (isset($_SESSION['id']))
     }
 }else
 {
-        $_SESSION['msg'] = "セッションが切れています。";
-        $err = $_SESSION;
-        header("location: login_form.php");
+    $_SESSION['msg'] = "セッションが切れています。";
+    $err_list = $_SESSION;
+    header("location: login_form.php");
 }
 ?>
