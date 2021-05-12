@@ -55,6 +55,13 @@ if (isset($_SESSION['id']))
         }
         //採点
         $result_point = round(($correct_count / $all_count)*100);
+        //insert
+        $sql = "INSERT INTO histories(user_id, point, created_at) VALUES (:user_id, :point, :created_at)";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':user_id', $_SESSION['id']);
+        $stmt->bindValue(':point', $result_point);
+        $stmt->bindValue(':created_at', $now);
+        $stmt->execute();
         //採点結果
         $_SESSION['all_count'] = $all_count;
         $_SESSION['answer_count'] = $answer_count;
