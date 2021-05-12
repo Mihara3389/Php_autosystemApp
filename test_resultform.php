@@ -1,7 +1,6 @@
 <?php
     session_start();    
-	$err_list = $_SESSION;
-    $username = $_SESSION['name'];
+	$username = $_SESSION['name'];
   	$all_count = $_SESSION['all_count'];
 	$answer_count = $_SESSION['answer_count'];
     $result_point = $_SESSION['result_point'];

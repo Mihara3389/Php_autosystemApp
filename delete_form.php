@@ -1,5 +1,7 @@
 <?php
     session_start();
+    $err_list = $_SESSION['msg'];
+    unset($_SESSION['msg']);
     $list = $_SESSION['list'];
 ?>
 <link  href="css/list.css" rel="stylesheet">

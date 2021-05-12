@@ -48,7 +48,7 @@ if (isset($_SESSION['id']))
             if(!empty($answer)){
               if($bf === $answer){
                 $_SESSION['msg'] = "答えが重複しています。";
-                $err_list = $_SESSION;    
+                $err_list = $_SESSION;
               }else{
                 $answer_list[] = $answer;
                 $bf = $answer;
@@ -69,7 +69,6 @@ if (isset($_SESSION['id']))
           }
       }
       if (count($err_list) > 0) {
-          $_SESSION = $err_list;
           //register_formへ遷移
           header('location: register_form.php');
           return;
@@ -80,7 +79,6 @@ if (isset($_SESSION['id']))
     }
   }else{
         $_SESSION['msg'] = "セッションが切れています。";
-        $err_list = $_SESSION;
         header("location: login_form.php");
 }
 ?>

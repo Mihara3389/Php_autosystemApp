@@ -1,6 +1,9 @@
 <?php
     session_start();
     $err_list = $_SESSION;
+    unset($_SESSION['msg']);
+    unset($_SESSION['msg_question']);
+    unset($_SESSION['msg_answer']);
 ?>
 <link  href="css/register.css" rel="stylesheet">
 <link  href="css/style.css" rel="stylesheet">

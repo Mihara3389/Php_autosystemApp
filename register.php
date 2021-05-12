@@ -37,7 +37,6 @@ if (isset($_POST["Signup"])) {
             $err_list = $_SESSION;
         }
         if (count($err_list) > 0) {
-            $_SESSION = $err_list;
             //signupへ遷移
             header('location: signup.php');
             return;

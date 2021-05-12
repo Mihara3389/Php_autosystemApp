@@ -37,7 +37,6 @@ if (isset($_POST["Login"])) {
             $err_list = $_SESSION;
         }
         if (count($err_list) > 0) {
-            $_SESSION = $err_list;
             //login_formへ遷移
             header('location: login_form.php');
             return;
@@ -46,5 +45,10 @@ if (isset($_POST["Login"])) {
             header("location: index.php");
         }
     } 
+    if (count($err_list) > 0) {
+        //login_formへ遷移
+        header('location: login_form.php');
+        return;
+    }
 }
 ?>

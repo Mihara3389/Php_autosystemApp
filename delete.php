@@ -1,7 +1,5 @@
 <?php
 session_start();
-// エラーメッセージの初期化
-$err_list = [];
 //ログインセッションを確認
 if (isset($_SESSION['id']))
  {
@@ -14,7 +12,6 @@ if (isset($_SESSION['id']))
         //idが取得できていなかったらエラー
         if (empty($id)) {
            $_SESSION['msg'] = "問題idが取得できませんでした。";
-           $err_list = $_SESSION;
            header("location: test_resultform.php");
         }
         //delete
@@ -29,12 +26,10 @@ if (isset($_SESSION['id']))
         require('list.php');
     }else{
         $_SESSION['msg'] = "idが取得できませんでした。";
-        $err_list = $_SESSION;
         header("location: delete_form.php");
     }
   }else{
         $_SESSION['msg'] = "セッションが切れています。";
-        $err_list = $_SESSION;
         header("location: login_form.php");
 }
 ?>

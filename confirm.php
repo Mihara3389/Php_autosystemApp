@@ -4,7 +4,6 @@
     //問題idが取得できていなかったらエラー
     if (empty($id)) {
         $_SESSION['msg'] = "問題idが取得できませんでした。";
-        $err_list = $_SESSION;
         header("location: delete_form.php");
     }
     //問題idより質問と答えを取得
