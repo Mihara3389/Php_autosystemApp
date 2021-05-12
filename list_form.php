@@ -7,12 +7,12 @@
 <title>List</title>
 <body>
 <div class="box" >
-<form action="list.php" method="post">
 <div class="form">
         <a href="index.php">top</a>
 	    <a href="logout.php">logout</a>
 </div>
-<input type="submit" name="register" value="register">
+<form action="register_form.php" method="post">
+	<input type="submit" name="Register" value="Register">
 </form>
 <?php if(!empty($list)): ?>
 <?php foreach($list as $l){?>  
@@ -23,14 +23,14 @@
 		<td><input type="text"  id="id" name="id"  value=<?php echo $l['qid']; ?> readonly></td>
 		<td><input type="text"  id="question" name="question"  value=<?php echo $l['q']; ?>  readonly></td>
 		<td>
-		<form action="list.php" method="post">		
-		    <input type="submit" name="edit" value="edit">
+		<form action="cheack.php" method="post">		
+		    <input type="submit" name="Edit" value="Edit">
 		    <input type="hidden" name="id" value=<?php echo $l['qid']; ?>>
 		</form>
 		</td>
    		<td>
-   		<form action="list.php" method="post">		
-		    <input type="submit" name="delete" value="delete">
+   		<form action="cheack.php" method="post">		
+		    <input type="submit" name="Delete" value="Delete">
 		    <input type="hidden" name="id" value="<?php echo $l['qid']; ?>">
 		</form>
 		</td>
