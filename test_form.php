@@ -2,7 +2,7 @@
     session_start();
     $testlist = $_SESSION['testlist'];
 ?>
-<link  href="css/test.css" rel="stylesheet">
+<link  href="css/test_form.css" rel="stylesheet">
 <link  href="css/style.css" rel="stylesheet">
 <title>Test_Form</title>
 <body>
@@ -14,16 +14,16 @@
     <table>
         <?php foreach($testlist as $tl){?>
         <tr>
-    	    <td><input type="text"  id="id" name="id"  value=<?php echo $tl['qid']; ?> readonly></td>
-		    <td><input type="text"  id="question" name="question"  value=<?php echo $tl['q']; ?>  readonly></td>
+    	    <td><input type="text"  id="id" name="id[]"  value=<?php echo $tl['qid']; ?> readonly></td>
+		    <td><input type="text"  id="question" name="question[]"  value=<?php echo $tl['q']; ?>  readonly></td>
 	    </tr>
         <tr>
             <td> 回答：</td>
-            <td><input type="text" id="answer" name="answer"  placeholder="Answer"></td>
+            <td><input type="text" id="answer" name="answer[]" placeholder="Answer"></td>
      	</tr>
         <?php } ?>
 	</table>
 	<br>
-	<input type="submit" class="submit" name="action" value="Cheack">
+    <input type="submit" id="Cheack" name="Cheack" value="Cheack">
 </form>
 </body>
