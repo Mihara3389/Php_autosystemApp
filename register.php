@@ -1,7 +1,7 @@
 <?php
 session_start();
 // エラーメッセージの初期化
-$err = [];
+$err_list = [];
 //変数初期化
 $username ="";
 $password ="";
@@ -10,10 +10,10 @@ if (isset($_POST["Signup"])) {
     //バリデーションチェック
     if (empty($_POST["username"])) {  // 値が空のとき
         $_SESSION['msg_user'] = "ユーザー名が未入力です。";
-        $err = $_SESSION;
+        $err_list = $_SESSION;
    } elseif (empty($_POST["password"])) {// 値が空のとき
         $_SESSION['msg_pass'] = "パスワードが未入力です。";
-        $err = $_SESSION;
+        $err_list = $_SESSION;
     }elseif (!empty($_POST["username"]) && !empty($_POST["password"])) {
         // 入力したユーザー名とパスワードを格納
         $username = $_POST["username"];
@@ -33,10 +33,10 @@ if (isset($_POST["Signup"])) {
         $key = strcmp($member, $username);
         if ($key === 0) {
             $_SESSION['msg'] = "入力されたユーザー名はすでに登録済です。";
-            $err = $_SESSION;
+            $err_list = $_SESSION;
         }
-        if (count($err) > 0) {
-            $_SESSION = $err;
+        if (count($err_list) > 0) {
+            $_SESSION = $err_list;
             //signupへ遷移
             header('location: signup.php');
             return;

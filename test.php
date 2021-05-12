@@ -1,10 +1,7 @@
 <?php
 session_start();
 // エラーメッセージの初期化
-$err = [];
-//変数初期化
-$id = [];
-$answer = [];
+$err_list = [];
 //ログインセッションを確認
 if (isset($_SESSION['id']))
  {
@@ -15,13 +12,13 @@ if (isset($_SESSION['id']))
         //セッションよりユーザー名を取得
         $username = $_SESSION['name'];
         //入力値を取得
-        $id = $_POST['id'];
-        $answer = $_POST['answer'];
+        $id_list = $_POST['id'];
+        $answer_list = $_POST['answer'];
         //idが取得できていなかったらエラー
-        if (empty($id)) {
-            $_SESSION['msg'] = "問題がありません。登録してください。";
-            $err = $_SESSION;
-            header("location: login_form.php");
+        if (empty($id_list)) {
+            $_SESSION['msg'] = "問題idが取得できませんでした。";
+            $err_list = $_SESSION;
+            header("location: test_resultform.php");
         }
         //現在時刻を取得
         date_default_timezone_set('Asia/Tokyo');
@@ -31,26 +28,23 @@ if (isset($_SESSION['id']))
         $all_count = 0;
         $answer_count = 0;
         $correct_count = 0;
-        foreach ($id as $i) {
+        foreach ($id_list as $id) {
             //問題数カウント
             $all_count = $all_count + 1;
-            $id_answers = [];
-            $sql = "SELECT question_id,answer FROM correct_answers WHERE question_id = :i";
+            $dbanswer_array = [];
+            $sql = "SELECT question_id,answer FROM correct_answers WHERE question_id = :id";
             $stmt = $dbh->prepare($sql);
-            $stmt->bindValue(':i', $i);
+            $stmt->bindValue(':id', $id);
             $stmt->execute();
-            while ($id_answer  = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $id_answers[] = $id_answer;
-            }
+            $dbanswer_array  = $stmt->fetchAll(PDO::FETCH_ASSOC);
             //データベースで取得した値を配列へ変換
-            $dbanswer = [];
-            $dbanswer = $id_answers;
+            $dbanswer_list = $dbanswer_array;
             //入力値の分ループ
-            foreach ($answer as $v1) {
+            foreach ($answer_list as $answer) {
                 //dbの配列分ループ
-                foreach ($dbanswer as $v2) {
+                foreach ($dbanswer_list as $dbanswer) {
                 //配列の中から探索
-                    if (in_array($v1, $v2, true)) {
+                    if (in_array($answer, $dbanswer, true)) {
                     $answer_count = $answer_count + 1;
                     $correct_count = $correct_count + 1;
                     }      
@@ -58,10 +52,14 @@ if (isset($_SESSION['id']))
             }
         }
         //採点
-        $cheack = 0;
-        $result_point = 0;
-        $cheack = ($correct_count / $all_count)*100;
-        $result_point = round($cheack);
+        $result_point = round(($correct_count / $all_count)*100);
+        //insert
+        $sql = "INSERT INTO histories(user_id, point, created_at) VALUES (:user_id, :point, :created_at)";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':user_id', $_SESSION['id']);
+        $stmt->bindValue(':point', $result_point);
+        $stmt->bindValue(':created_at', $now);
+        $stmt->execute();
         //採点結果
         $_SESSION['all_count'] = $all_count;
         $_SESSION['answer_count'] = $answer_count;
@@ -73,7 +71,7 @@ if (isset($_SESSION['id']))
 }else
 {
         $_SESSION['msg'] = "セッションが切れています。";
-        $err = $_SESSION;
+        $err_list = $_SESSION;
         header("location: login_form.php");
 }
 ?>

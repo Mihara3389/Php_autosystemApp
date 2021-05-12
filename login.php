@@ -1,7 +1,7 @@
 <?php
 session_start();
 // エラーメッセージの初期化
-$err = [];
+$err_list = [];
 //変数初期化
 $username ="";
 $password ="";
@@ -10,10 +10,10 @@ if (isset($_POST["Login"])) {
     //バリデーションチェック
     if (empty($_POST["username"])) {  // 値が空のとき
         $_SESSION['msg_user'] = "ユーザー名が未入力です。";
-        $err = $_SESSION;
+        $err_list = $_SESSION;
     }elseif (empty($_POST["password"])) {// 値が空のとき
         $_SESSION['msg_pass'] = "パスワードが未入力です。";
-        $err = $_SESSION;
+        $err_list = $_SESSION;
     }elseif (!empty($_POST["username"]) && !empty($_POST["password"])) {
         $username = $_POST['username'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -34,10 +34,10 @@ if (isset($_POST["Login"])) {
             $_SESSION['name'] = $member['username'];
         }else{
             $_SESSION['msg'] = "ユーザー名もしくはパスワードが間違っています。";
-            $err = $_SESSION;
+            $err_list = $_SESSION;
         }
-        if (count($err) > 0) {
-            $_SESSION = $err;
+        if (count($err_list) > 0) {
+            $_SESSION = $err_list;
             //login_formへ遷移
             header('location: login_form.php');
             return;
