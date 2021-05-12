@@ -10,8 +10,8 @@
 <link  href="css/test.css" rel="stylesheet">
 <link  href="css/style.css" rel="stylesheet">
 <title>Test_Form</title>
-<?php if(!empty($err['msg'])): ?>
-        <p style="color:red;"><?php echo $err['msg']; ?></p>
+<?php if(!empty($err_list['msg'])): ?>
+        <p style="color:red;"><?php echo $err_list['msg']; ?></p>
 <?php endif; ?>
 <body>
 <form class="box" action="test.php"  method="post">
