@@ -2,8 +2,6 @@
     session_start();
     $name = $_SESSION['name'];
     $members = $_SESSION['members'];
-    $_SESSION = array();
-    session_destroy();
 ?>
 <link  href="css/history.css" rel="stylesheet">
 <link  href="css/style.css" rel="stylesheet">
@@ -30,8 +28,8 @@
             <td style="text-align: center;"><?php echo $name; ?></td>
             <td style="text-align: center;"><?php echo $member['point']; ?></td>
             <td style="text-align: center;"><?php echo $member['created_at']; ?></td>
-        </tbody>
         </tr>
+        </tbody>
 <?php
 }
 ?>
