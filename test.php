@@ -19,9 +19,9 @@ if (isset($_SESSION['id']))
         $answer = $_POST['answer'];
         //idが取得できていなかったらエラー
         if (empty($id)) {
-            $_SESSION['msg'] = "問題がありません。登録してください。";
+            $_SESSION['msg'] = "問題idが取得できませんでした。";
             $err = $_SESSION;
-            header("location: login_form.php");
+            header("location: test_resultform.php");
         }
         //現在時刻を取得
         date_default_timezone_set('Asia/Tokyo');

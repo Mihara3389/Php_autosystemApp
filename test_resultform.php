@@ -1,5 +1,6 @@
 <?php
     session_start();    
+	$err = $_SESSION;
     $username = $_SESSION['name'];
   	$all_count = $_SESSION['all_count'];
 	$answer_count = $_SESSION['answer_count'];
@@ -9,6 +10,9 @@
 <link  href="css/test.css" rel="stylesheet">
 <link  href="css/style.css" rel="stylesheet">
 <title>Test_Form</title>
+<?php if(!empty($err['msg'])): ?>
+        <p style="color:red;"><?php echo $err['msg']; ?></p>
+<?php endif; ?>
 <body>
 <form class="box" action="test.php"  method="post">
     <div class="form">
