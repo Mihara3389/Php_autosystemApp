@@ -36,9 +36,7 @@ if (isset($_SESSION['id']))
             $stmt = $dbh->prepare($sql);
             $stmt->bindValue(':id', $id);
             $stmt->execute();
-            while ($dbanswer  = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $dbanswer_array[] = $dbanswer;
-            }
+            $dbanswer_array  = $stmt->fetchAll(PDO::FETCH_ASSOC);
             //データベースで取得した値を配列へ変換
             $dbanswer_list = $dbanswer_array;
             //入力値の分ループ

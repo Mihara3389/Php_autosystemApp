@@ -22,9 +22,7 @@ if (isset($_SESSION['id']))
         $sql = "SELECT DISTINCT questions.id as qid, questions.question as q FROM questions INNER JOIN correct_answers ON questions.id = correct_answers.question_id;";
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
-        while ($dbqa  = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $qa_list[] = $dbqa;
-        }
+        $qa_list  = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $result = shuffle($qa_list);
         //テスト画面へ遷移
         if ($result === false) {
@@ -43,9 +41,7 @@ if (isset($_SESSION['id']))
         $stmt->execute();
         //該当する全件を取得
         //連想配列で取得
-        while($member  = $stmt->fetch( PDO::FETCH_ASSOC )){
-            $members[] = $member;
-        }
+        $members  = $stmt->fetchAll(PDO::FETCH_ASSOC);        
         //履歴へ遷移
         $_SESSION['members'] = $members;
         header("location: history_form.php");

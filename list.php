@@ -5,9 +5,7 @@
  $stmt->execute();
  //questions全件を取得
  //連想配列で取得
- while ($qadata  = $stmt->fetch(PDO::FETCH_ASSOC)) {
-     $qa_array[] = $qadata;
- }
+ $qa_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
  //dbより取得した配列を取得
  $qalist = $qa_array;
  //以下結果を入れる変数・そのほか変数初期化
