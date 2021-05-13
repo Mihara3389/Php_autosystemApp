@@ -33,18 +33,25 @@
 	<?php } ?>
 	</tbody>
 	<tbody>
-	<?php foreach($list as $l){?> 
+	<?php foreach($list as $l){?>
    	    <tr>
+		<?php if(!empty($l['a'])): ?> 
             <?php if($l['flg'] === 1): ?>
-   	        <td> 答え：</td>
-			<td><input type="hidden"  id="answer_id" name="answer_id[]"  value=<?php echo $l['aid']; ?>>
-				<input type="text" id="answer" name="answer[]"  value=<?php echo $l['a']; ?> class="validate[required,maxSize[255]]"> </td>
+   	        	<td> 答え：</td>
+				<td><input type="hidden"  id="answer_id" name="answer_id[]"  value=<?php echo $l['aid']; ?>>
+					<input type="text" id="answer" name="answer[]"  value=<?php echo $l['a']; ?> class="validate[required,maxSize[255]]"> </td>
 	        <?php else: ?>
-            <td>&emsp;&emsp;&emsp;</td>
-			<td><input type="hidden"  id="answer_id" name="answer_id[]"  value=<?php echo $l['aid']; ?>>
-				<input type="text" id="answer" name="answer[]"  value=<?php echo $l['a']; ?> class="validate[required,maxSize[255]]"> </td>
-			<td><input class="delbtn" type="button" id="delBtn' + count + '" name="action" value="delete" onclick="deleteRow(this)"></td>
+            	<td>&emsp;&emsp;&emsp;</td>
+				<td><input type="hidden"  id="answer_id" name="answer_id[]"  value=<?php echo $l['aid']; ?>>
+					<input type="text" id="answer" name="answer[]"  value=<?php echo $l['a']; ?> class="validate[required,maxSize[255]]"> </td>
+				<td><input class="delbtn" type="button" id="delBtn' + count + '" name="action" value="delete" onclick="deleteRow(this)"></td>
 			<?php endif; ?>
+		<?php else: ?>
+            <td> 答え：</td>
+			<td><input type ="hidden" id="answer_id" name="answer_id[]" value ="new">
+				<input type="text" id="answer" name="answer[]" placeholder="Answer" class="validate[required,maxSize[255]]" ></td>
+			<td><input class="delbtn" type="button" id="delBtn' + count + '"  value="delete" onclick="deleteRow(this)"></td>
+		<?php endif; ?>
         </tr>
 	<?php } ?>
 	</tbody>

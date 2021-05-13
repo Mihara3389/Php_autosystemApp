@@ -92,52 +92,54 @@ if (isset($_SESSION['id']))
         }
         //配列へ変換
         $aid_list = $aid_array;
-        //更新対象に値しない答えを削除
-        for ($i = 0; $i < count($all_list); ++$i) {
-            //削除フラグ
-            $delete_flg = 0;
-            $add_flg = 0;
-            $all = $all_list[$i];
-            for ($j = 0; $j < count($aid_list); ++$j) {
-                $aid = $aid_list[$j];
-                if ( $all === $aid or $aid === 'new') {
-                    $delete_flg = 1;
-                    break;
+        if (!empty($all_list)) {
+            //更新対象に値しない答えを削除
+            for ($i = 0; $i < count($all_list); ++$i) {
+                //削除フラグ
+                $delete_flg = 0;
+                $add_flg = 0;
+                $all = $all_list[$i];
+                for ($j = 0; $j < count($aid_list); ++$j) {
+                    $aid = $aid_list[$j];
+                    if ($all === $aid or $aid === 'new') {
+                        $delete_flg = 1;
+                        break;
+                    }
                 }
-            }
-            if ($delete_flg === 0) {
-                $sql = "DELETE FROM correct_answers WHERE id = :aid;";
-                $stmt = $dbh->prepare($sql);
-                $stmt->bindValue(':aid', $all);
-                $stmt->execute();
-            }
-        }
-        //答えを更新・追加する
-        for ($k = 0; $k < count($aid_list); ++$k) {
-          //配列へ変換
-          $answer_list = $answer_array;
-          for ($l = 0; $l < count($answer_list); ++$l) {
-            if($k === $l){
-              if(($aid_array[$k])==='new'){
-                $sql = "INSERT INTO correct_answers(question_id, answer,created_at, updated_at) VALUES (:question_id, :answer, :created_at, :updated_at)";
-                $stmt = $dbh->prepare($sql);
-                $stmt->bindValue(':question_id', $qid);
-                $stmt->bindValue(':answer', $answer_list[$l]);
-                $stmt->bindValue(':created_at', $now);
-                $stmt->bindValue(':updated_at', $now);
-                $stmt->execute();      
-              }else{
-                $sql = "UPDATE correct_answers SET answer = :answer, updated_at = :updated_at WHERE id = :id and question_id = :question_id;";
-                $stmt = $dbh->prepare($sql);
-                $stmt->bindValue(':id', $aid_array[$k]);
-                $stmt->bindValue(':question_id', $qid);
-                $stmt->bindValue(':answer', $answer_list[$l]);
-                $stmt->bindValue(':updated_at', $now);
-                $stmt->execute();      
+                if ($delete_flg === 0) {
+                    $sql = "DELETE FROM correct_answers WHERE id = :aid;";
+                    $stmt = $dbh->prepare($sql);
+                    $stmt->bindValue(':aid', $all);
+                    $stmt->execute();
+                }
               }
             }
-          }
-        }
+            //答えを更新・追加する
+            for ($k = 0; $k < count($aid_list); ++$k) {
+                //配列へ変換
+                $answer_list = $answer_array;
+                for ($l = 0; $l < count($answer_list); ++$l) {
+                    if ($k === $l) {
+                        if (($aid_array[$k])==='new') {
+                            $sql = "INSERT INTO correct_answers(question_id, answer,created_at, updated_at) VALUES (:question_id, :answer, :created_at, :updated_at)";
+                            $stmt = $dbh->prepare($sql);
+                            $stmt->bindValue(':question_id', $qid);
+                            $stmt->bindValue(':answer', $answer_list[$l]);
+                            $stmt->bindValue(':created_at', $now);
+                            $stmt->bindValue(':updated_at', $now);
+                            $stmt->execute();
+                        } else {
+                            $sql = "UPDATE correct_answers SET answer = :answer, updated_at = :updated_at WHERE id = :id and question_id = :question_id;";
+                            $stmt = $dbh->prepare($sql);
+                            $stmt->bindValue(':id', $aid_array[$k]);
+                            $stmt->bindValue(':question_id', $qid);
+                            $stmt->bindValue(':answer', $answer_list[$l]);
+                            $stmt->bindValue(':updated_at', $now);
+                            $stmt->execute();
+                        }
+                    }
+                }
+            }
     }
     //リストへ戻る
     require('listGather.php');
