@@ -17,7 +17,7 @@
 <title>Register</title>
 <body>
 <div class="box">
-<form id="form-name"  action="cheack.php"  method="post">
+<form action="cheack.php"  method="post">
 <?php if(!empty($err_list['msg'])): ?>
     <p style="color:red;"><?php echo $err_list['msg']; ?></p>
 <?php endif; ?>
@@ -25,6 +25,7 @@
         <a href="index.php">top</a>
 	    <a href="logout.php">logout</a>
     </div>
+    <div id="form-name">
     <table id="tbl">
    	    <tr>	
    		    <td >問題：</td>
@@ -41,6 +42,7 @@
    		    <td><input type="text" id="answer" name="answer[]" placeholder="Answer"  class="validate[required,maxSize[255]]"></td>
    	    </tr>
     </table>
+    </div>
     <br>
     <input type="submit" name="Return"  value="Return">
     <input type="submit" name="Cheack"  value="Cheack">
