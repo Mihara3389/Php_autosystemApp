@@ -15,7 +15,7 @@ if (isset($_SESSION['id']))
         //新規qa登録画面へ遷移
         header("location: qaregister_form.php");
       } else {
-        //リスト画面へ遷移
+        //削除確認画面へ遷移
         $_SESSION['list'] = $list;
         header("location: delete_form.php");
       }
@@ -26,7 +26,7 @@ if (isset($_SESSION['id']))
         //新規qa登録画面へ遷移
         header("location: qaregister_form.php");
       } else {
-        //リスト画面へ遷移
+        //編集確認画面へ遷移
         $_SESSION['list'] = $list;
         header("location: edit_form.php");
       }
