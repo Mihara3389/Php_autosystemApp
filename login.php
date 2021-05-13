@@ -42,7 +42,7 @@ if (isset($_POST["Login"])) {
             return;
         } else{
              //topへ遷移
-            header("location: index.php");
+            header("location: topIndex.php");
         }
     } 
     if (count($err_list) > 0) {

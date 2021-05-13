@@ -1,6 +1,6 @@
 <?php
     session_start();    
-    $err_list = $_SESSION['msg'];
+    $err_list = $_SESSION;
     unset($_SESSION['msg']);
     $question = $_SESSION['question'];
     $answer_list = $_SESSION['answer_list'];
