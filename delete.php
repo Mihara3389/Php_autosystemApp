@@ -12,7 +12,7 @@ if (isset($_SESSION['id']))
         //idが取得できていなかったらエラー
         if (empty($id)) {
            $_SESSION['msg'] = "問題idが取得できませんでした。";
-           header("location: test_resultform.php");
+           header("location: delete_form.php");
         }
         //delete
         $sql = "DELETE questions, correct_answers FROM questions INNER JOIN correct_answers ON questions.id = correct_answers.question_id WHERE questions.id = :qid;";
@@ -20,10 +20,10 @@ if (isset($_SESSION['id']))
         $stmt->bindValue(':qid', $id);
         $stmt->execute();
         //削除をしたらリスト画面へ戻る
-        require('list.php');
+        require('listGather.php');
     }else if(isset($_POST["Return"])){
         //リスト画面へ戻る
-        require('list.php');
+        require('listGather.php');
     }else{
         $_SESSION['msg'] = "idが取得できませんでした。";
         header("location: delete_form.php");

@@ -14,7 +14,7 @@
 <body>
 <form class="box" action="edit.php"  method="post">
 <div class="form">
-        <a href="index.php">top</a>
+        <a href="topIndex.php">top</a>
 	    <a href="logout.php">logout</a>
 </div>
 <table>

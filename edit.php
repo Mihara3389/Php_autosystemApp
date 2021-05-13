@@ -51,7 +51,7 @@ if (isset($_SESSION['id']))
       }
     }else if(isset($_POST["Return"])){
       //リスト画面へ戻る
-      require('list.php');   
+      require('listGather.php');   
     }
   }else{
         $_SESSION['msg'] = "セッションが切れています。";

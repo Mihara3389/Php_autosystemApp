@@ -7,7 +7,7 @@
  //連想配列で取得
  $qa_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
  //収集したデータを表示用へカスタマイズする
- require('list_custom.php');
+ require('listCustom.php');
  if (empty($qa_array)) {
      //新規qa登録画面へ遷移
      header("location: register_form.php");

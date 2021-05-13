@@ -15,7 +15,7 @@
 <body>
 <form class="box" action="test.php"  method="post">
     <div class="form">
-        <a href="index.php">top</a>
+        <a href="topIndex.php">top</a>
 	    <a href="logout.php">logout</a>
     </div>
 	<h1>テスト結果</h1>

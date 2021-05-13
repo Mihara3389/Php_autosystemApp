@@ -15,7 +15,7 @@
 <body>
 <form class="box" action="edit.php" method="post">
 <div class="form">
-    <a href="index.php">top</a>
+    <a href="topIndex.php">top</a>
     <a href="logout.php">logout</a>
 </div>
 <?php if(!empty($list)): ?>
@@ -49,7 +49,7 @@
 	</div>
 <?php endif; ?>
 <br>
-<input type="submit" name="Return"  value="Return">
+<input type="submit" name="Return_list"  value="Return">
 <input type="submit" name="Cheack"  value="Cheack">
 <input type="button" name="Add" value="Add" onclick="appendRow()">
 <br />

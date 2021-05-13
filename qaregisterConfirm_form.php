@@ -12,9 +12,9 @@
         <p style="color:red;"><?php echo $err_list['msg']; ?></p>
 <?php endif; ?>
 <body>
-<form class="box" action="register.php"  method="post">
+<form class="box" action="qaregister.php"  method="post">
 <div class="form">
-        <a href="index.php">top</a>
+        <a href="topIndex.php">top</a>
 	    <a href="logout.php">logout</a>
 </div>
 <table>
@@ -38,7 +38,7 @@
     <?php endif; ?>   	            
 </table>
 <br>
-<input type="submit" name="Return" value="Return">
+<input type="submit" name="Return_register" value="Return">
 <input type="submit" name="Register" value="Register">
 </form>
 </body>
