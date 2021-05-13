@@ -36,6 +36,7 @@
 		</td>
 	</tr>
 	<?php endif; ?>
+	<?php if(!empty($l['a'])): ?>
    	<tr>
    		<td> 答え：</td>
    		<td ><input type="text" id="answer_id" name="answer_id"  value=<?php echo $l['count']; ?>  readonly></td>
@@ -43,6 +44,7 @@
 		<td></td>
 		<td></td>
 	</tr>
+	<?php endif; ?>
 </table>
 <?php } ?>
 <?php endif; ?>
