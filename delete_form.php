@@ -7,14 +7,11 @@
 <title>Delete_Confirm</title>
 <body>
 <form class="box" action="delete.php"  method="post">
-    <?php if(!empty($err_list['msg'])): ?>
-        <p style="color:red;"><?php echo $err_list['msg']; ?></p>
-    <?php endif; ?>
-    <div class="form">
-        <a href="index.php">top</a>
-        <a href="logout.php">logout</a>
-    </div>
-    <?php if(!empty($list)): ?>
+<div class="form">
+    <a href="index.php">top</a>
+    <a href="logout.php">logout</a>
+</div>
+<?php if(!empty($list)): ?>
     <?php foreach($list as $l){?> 
     <table>
 	    <?php if($l['flg'] === 1): ?>
@@ -34,10 +31,10 @@
         </tr>
     </table>
     <?php } ?>
-    <?php endif; ?>
-    <br>
-    <input type="submit" name="Return" value="Return">
-    <input type="submit" name="Delete" value="Delete">  
-    <br />
+<?php endif; ?>
+<br>
+<input type="submit" name="Return" value="Return">
+<input type="submit" name="Delete" value="Delete">  
+<br />
 </form>
 </body>

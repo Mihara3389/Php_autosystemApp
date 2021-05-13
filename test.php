@@ -17,7 +17,6 @@ if (isset($_SESSION['id']))
         //idが取得できていなかったらエラー
         if (empty($id_list)) {
             $_SESSION['msg'] = "問題idが取得できませんでした。";
-            $err_list = $_SESSION;
             header("location: test_resultform.php");
         }
         //現在時刻を取得
@@ -71,7 +70,6 @@ if (isset($_SESSION['id']))
 }else
 {
         $_SESSION['msg'] = "セッションが切れています。";
-        $err_list = $_SESSION;
         header("location: login_form.php");
 }
 ?>

@@ -15,15 +15,17 @@
 <body>
 <title>Login_Form</title>
 <div class="box">
-<form id="form-name" action="login.php" method="post">
+<form action="login.php" method="post">
     <h1>Login</h1>
     <?php if(!empty($err_list['msg'])): ?>
         <p style="color:red;"><?php echo $err_list['msg']; ?></p>
     <?php endif; ?>
-　  <input type="text" name="username" placeholder="Username" class="validate[required]">
-    <input type="password" name="password"  placeholder="Password" class="validate[required]">
+    <div id="form-name">
+　      <input type="text" name="username" placeholder="Username" class="validate[required]">
+        <input type="password" name="password"  placeholder="Password" class="validate[required]">
     <input type="submit" id="Login" name="Login" value="Login">
-	<a href="signup.php">新規登録はこちら</a>
+	</div>
+    <a href="signup.php">新規登録はこちら</a>
 </form>
 </div>
 </body>
