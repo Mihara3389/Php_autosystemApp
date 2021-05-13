@@ -86,6 +86,6 @@ if (isset($_POST["Signup"])) {
     require('list.php');
 }elseif(isset($_POST["Return"])){
     //リストへ戻る
-    require('register.php');
+    require('register_form.php');
 }
 ?>

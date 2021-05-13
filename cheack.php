@@ -57,7 +57,6 @@ if (isset($_SESSION['id']))
           }
           //取得したデータをセッションへ格納
           if (count($err_list) > 0) {
-            $_SESSION = $err_list;
             //register_formへ遷移
             header('location: register_form.php');
             return;
