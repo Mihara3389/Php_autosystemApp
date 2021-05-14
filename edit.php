@@ -117,14 +117,13 @@ if (isset($_SESSION['id']))
             //答えを更新・追加する
             for ($k = 0; $k < count($aid_list); ++$k) {
                 //配列へ変換
-                $answer_list = $answer_array;
-                for ($l = 0; $l < count($answer_list); ++$l) {
+                for ($l = 0; $l < count($answer_array); ++$l) {
                     if ($k === $l) {
                         if (($aid_array[$k])==='new') {
                             $sql = "INSERT INTO correct_answers(question_id, answer,created_at, updated_at) VALUES (:question_id, :answer, :created_at, :updated_at)";
                             $stmt = $dbh->prepare($sql);
                             $stmt->bindValue(':question_id', $qid);
-                            $stmt->bindValue(':answer', $answer_list[$l]);
+                            $stmt->bindValue(':answer', $answer_array[$l]);
                             $stmt->bindValue(':created_at', $now);
                             $stmt->bindValue(':updated_at', $now);
                             $stmt->execute();
@@ -133,7 +132,7 @@ if (isset($_SESSION['id']))
                             $stmt = $dbh->prepare($sql);
                             $stmt->bindValue(':id', $aid_array[$k]);
                             $stmt->bindValue(':question_id', $qid);
-                            $stmt->bindValue(':answer', $answer_list[$l]);
+                            $stmt->bindValue(':answer', $answer_array[$l]);
                             $stmt->bindValue(':updated_at', $now);
                             $stmt->execute();
                         }
