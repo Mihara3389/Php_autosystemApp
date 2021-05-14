@@ -17,12 +17,12 @@
 <title>Register</title>
 <body>
 <div class="box">
-<form action="cheack.php"  method="post">
+<form action="qaregister.php"  method="post">
 <?php if(!empty($err_list['msg'])): ?>
     <p style="color:red;"><?php echo $err_list['msg']; ?></p>
 <?php endif; ?>
     <div class="form">
-        <a href="index.php">top</a>
+        <a href="topIndex.php">top</a>
 	    <a href="logout.php">logout</a>
     </div>
     <div id="form-name">
@@ -44,7 +44,7 @@
     </table>
     </div>
     <br>
-    <input type="submit" name="Return"  value="Return">
+    <input type="submit" name="Return_list"  value="Return">
     <input type="submit" name="Cheack"  value="Cheack">
     <input type="button" name="Add" value="Add" onclick="appendRow()">
 </form>

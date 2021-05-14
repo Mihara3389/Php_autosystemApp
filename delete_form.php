@@ -8,7 +8,7 @@
 <body>
 <form class="box" action="delete.php"  method="post">
 <div class="form">
-    <a href="index.php">top</a>
+    <a href="topIndex.php">top</a>
     <a href="logout.php">logout</a>
 </div>
 <?php if(!empty($list)): ?>
@@ -22,12 +22,14 @@
     	</tr>
 	    <?php endif; ?>
    	    <tr>
+        <?php if(!empty($l['a'])): ?> 
             <?php if($l['flg'] === 1): ?>
    		        <td> 答え：</td>
             <?php else: ?>
                 <td>&emsp;&emsp;&emsp;</td>
             <?php endif; ?>
-            <td><input type="text" id="answer" name="answer"  value=<?php echo $l['a']; ?>  readonly></td>
+                <td><input type="text" id="answer" name="answer"  value=<?php echo $l['a']; ?>  readonly></td>
+        <?php endif; ?>
         </tr>
     </table>
     <?php } ?>

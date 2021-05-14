@@ -10,7 +10,7 @@
 <body>
 <form class="box" action=""  method="post">
     <div class="form">
-        <a href="index.php">top</a>
+        <a href="topIndex.php">top</a>
 	    <a href="logout.php">logout</a>
     </div>
 	<h1>履歴</h1>

@@ -37,8 +37,8 @@ if (isset($_POST["Signup"])) {
             $err_list = $_SESSION;
         }
         if (count($err_list) > 0) {
-            //signupへ遷移
-            header('location: signup.php');
+            //signup_formへ遷移
+            header('location: signup_form.php');
             return;
         } else {
             //insert
@@ -52,40 +52,5 @@ if (isset($_POST["Signup"])) {
             header('location: login_form.php');
         }
     }
-}elseif(isset($_POST["Register"])){
-    //入力値を取得する
-    $question = $_POST['question'];
-    $answer_array = $_POST['answer'];
-    //データベース接続処理
-    require('dbconnect.php');
-    //問題のinsert
-    $sql = "INSERT INTO questions(question, created_at, updated_at) VALUES (:question, :created_at, :updated_at)";
-    $stmt = $dbh->prepare($sql);
-    $stmt->bindValue(':question', $question);
-    $stmt->bindValue(':created_at', $now);
-    $stmt->bindValue(':updated_at', $now);
-    $stmt->execute();
-    //問題のidを取得
-    $sql = "SELECT * FROM questions WHERE question = :question";
-    $stmt = $dbh->prepare($sql);
-    $stmt->bindValue(':question', $question);
-    $stmt->execute();
-    $question_id = $stmt->fetch(PDO::FETCH_ASSOC);
-    $qid = $question_id['id'];
-    //答えのinsert
-    foreach($answer_array as $answer){
-        $sql = "INSERT INTO correct_answers(question_id, answer,created_at, updated_at) VALUES (:question_id, :answer, :created_at, :updated_at)";
-        $stmt = $dbh->prepare($sql);
-        $stmt->bindValue(':question_id',$qid );
-        $stmt->bindValue(':answer', $answer);
-        $stmt->bindValue(':created_at', $now);
-        $stmt->bindValue(':updated_at', $now);
-        $stmt->execute();        
-    }
-    //リストへ戻る
-    require('list.php');
-}elseif(isset($_POST["Return"])){
-    //リストへ戻る
-    require('register_form.php');
 }
 ?>

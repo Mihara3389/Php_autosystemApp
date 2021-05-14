@@ -17,7 +17,7 @@ if (isset($_SESSION['id']))
         //idが取得できていなかったらエラー
         if (empty($id_list)) {
             $_SESSION['msg'] = "問題idが取得できませんでした。";
-            header("location: test_resultform.php");
+            header("location: testResult_form.php");
         }
         //現在時刻を取得
         date_default_timezone_set('Asia/Tokyo');
@@ -65,7 +65,7 @@ if (isset($_SESSION['id']))
         $_SESSION['result_point'] = $result_point;
         $_SESSION['current_time'] = $now;
         //テスト結果画面へ遷移
-        header("location: test_resultform.php");
+        header("location: testResult_form.php");
     }
 }else
 {

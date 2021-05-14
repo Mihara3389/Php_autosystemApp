@@ -15,7 +15,7 @@ if (isset($_SESSION['id']))
     //フォームからの値をチェック
     if (isset($_POST["list"])) {
         //リストの呼び出し
-        require('list.php');
+        require('listGather.php');
     }else if(isset($_POST["test"]))
     {
         //questionデータを取得する
